@@ -112,6 +112,7 @@ footer { display: flex; justify-content: space-between; gap: 2rem; padding: 2rem
 
 .demo-shell { width: min(calc(100% - 2rem), 960px); margin: 0 auto; padding: 2rem 0 5rem; }
 .back-link { display: inline-block; margin-bottom: 3rem; color: var(--cyan); text-decoration: none; }
+.project-identity { margin: 0 0 3rem; color: var(--cyan); font: 700 .75rem ui-monospace, monospace; letter-spacing: .1em; }
 .demo-header { padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
 .demo-header h1 { font-size: clamp(2.6rem, 7vw, 5rem); }
 .demo-header > p:last-child { max-width: 720px; color: var(--muted); font-size: 1.05rem; }
