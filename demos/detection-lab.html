@@ -1,14 +1,138 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Detection Lab — Design Evidence</title><link rel="stylesheet" href="../styles.css"></head>
-<body><main class="demo-shell"><p class="project-identity">UGUR YERLIKAYA / PROJECT EVIDENCE</p>
-<header class="demo-header"><p class="eyebrow">01 / LOCAL IMPLEMENTATION EVIDENCE</p><h1>Cloud identity compromise test chain</h1><p>A bounded Entra ID and Windows detection lifecycle for Microsoft Sentinel. The infrastructure, detections, fixtures, automation and response material are implemented locally; the authenticated Azure run remains pending.</p></header>
-<section class="panel"><div class="metric-grid"><div class="metric"><span>KQL rules</span><strong class="effective">4</strong></div><div class="metric"><span>TP/FP fixtures passing</span><strong class="effective">8/8</strong></div><div class="metric"><span>Python tests passing</span><strong class="effective">4</strong></div></div></section>
-<section class="panel notice"><strong>Current boundary</strong><p>Terraform validates against AzureRM 4.81. The page does not claim that Azure resources, KQL alerts or Sentinel incidents have already been executed.</p></section>
-<section class="panel"><h2>Scenario sequence</h2>
-<div class="scenario"><span>D1 · T1110.003</span><div><strong>Password spraying</strong><p>Generate controlled failed sign-in activity and validate aggregation, threshold and user context.</p></div></div>
-<div class="scenario"><span>D2 · T1098.003</span><div><strong>Unexpected cloud role assignment</strong><p>Detect a privileged role change and preserve actor, target and audit correlation evidence.</p></div></div>
-<div class="scenario"><span>D3 · T1059.001</span><div><strong>Suspicious PowerShell</strong><p>Correlate endpoint execution telemetry with the identity timeline without adding an unrelated attack story.</p></div></div>
-<div class="scenario"><span>D4 · T1098.001</span><div><strong>Service principal credential change</strong><p>Detect an application credential addition and drive containment and recovery decisions.</p></div></div>
-</section>
-<section class="panel"><h2>Implemented artifacts</h2><p>Private-VM Terraform, filtered Windows DCR, four scheduled Sentinel rules, local TP/FP validation, two synthetic investigation records, three response runbooks, a threat model, cost/cleanup controls and a failure-tolerant Python IOC enrichment CLI.</p></section>
-<section class="panel"><h2>Final Azure evidence</h2><p>Authenticated plan/apply/destroy output, ingestion health, four live KQL results, two Sentinel incident IDs, sanitized screenshots and actual cost/cleanup proof.</p></section>
-</main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive evidence for a Microsoft Sentinel cloud identity detection and response lab.">
+  <title>Cloud Detection Lab | Interactive Project Evidence</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <main class="demo-shell detection-page">
+    <div class="project-bar">
+      <p class="project-identity">UGUR YERLIKAYA / PROJECT 01</p>
+      <span class="status status-prototype">Implementation in progress</span>
+    </div>
+
+    <header class="demo-header detection-hero">
+      <div>
+        <p class="eyebrow">MICROSOFT CLOUD DETECTION &amp; IDENTITY RESPONSE</p>
+        <h1>From identity signal<br>to analyst decision.</h1>
+        <p>A reproducible Microsoft Sentinel lab built around one coherent cloud identity compromise chain. Explore the architecture, run the local detection fixtures and inspect the response decisions.</p>
+        <div class="hero-actions">
+          <a class="primary-action" href="#live-demo">Run the interactive demo</a>
+          <a class="secondary-action" href="https://github.com/heissonly/microsoft-cloud-detection-identity-lab">Inspect source code</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="metric-grid evidence-metrics" aria-label="Verified project metrics">
+      <div class="metric"><span>Versioned KQL rules</span><strong class="effective">4</strong><small>D1–D4</small></div>
+      <div class="metric"><span>TP/FP fixtures passing</span><strong class="effective">8/8</strong><small>Deterministic local tests</small></div>
+      <div class="metric"><span>Python tests passing</span><strong class="effective">4</strong><small>IOC enrichment</small></div>
+      <div class="metric"><span>Response runbooks</span><strong class="effective">3</strong><small>Human-approved actions</small></div>
+    </section>
+
+    <section class="panel boundary-card">
+      <div><span class="signal-dot"></span><strong>Evidence boundary</strong></div>
+      <p>Terraform, detections, tests, investigations and runbooks are implemented and locally verified. This page uses reserved, synthetic data. Authenticated Azure ingestion, Sentinel alert IDs and sanitized portal screenshots will be added after the controlled cloud run.</p>
+    </section>
+
+    <section class="panel architecture-panel" id="architecture">
+      <div class="section-kicker">01 / SYSTEM DESIGN</div>
+      <div class="section-intro">
+        <div><h2>Bounded telemetry pipeline</h2><p>Only the signals needed for the four scenarios enter the workspace. A private Windows event source and automatic shutdown reduce exposure and cost.</p></div>
+        <div class="legend"><span><i class="legend-identity"></i>Identity</span><span><i class="legend-endpoint"></i>Endpoint</span><span><i class="legend-control"></i>Control</span></div>
+      </div>
+      <div class="architecture-canvas" role="img" aria-label="Entra and private Windows telemetry flow through Log Analytics to Sentinel detections, investigation and response">
+        <svg viewBox="0 0 1120 390" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#587487"/></marker>
+            <linearGradient id="nodeFill" x1="0" x2="1"><stop stop-color="#112737"/><stop offset="1" stop-color="#0c1b26"/></linearGradient>
+          </defs>
+          <g class="architecture-links" fill="none" stroke="#587487" stroke-width="2" marker-end="url(#arrow)">
+            <path d="M210 90 H325"/><path d="M210 270 H325"/><path d="M485 180 H585"/><path d="M745 180 H825"/><path d="M945 180 H1030"/>
+            <path d="M405 125 V145"/><path d="M405 235 V210"/>
+          </g>
+          <g class="arch-node identity-node"><rect x="30" y="45" width="180" height="90" rx="8"/><text x="52" y="76" class="arch-label">IDENTITY SOURCE</text><text x="52" y="103" class="arch-title">Microsoft Entra ID</text><text x="52" y="121" class="arch-detail">Sign-in + audit logs</text></g>
+          <g class="arch-node endpoint-node"><rect x="30" y="225" width="180" height="90" rx="8"/><text x="52" y="256" class="arch-label">ENDPOINT SOURCE</text><text x="52" y="283" class="arch-title">Private Windows VM</text><text x="52" y="301" class="arch-detail">PowerShell 4103 / 4104</text></g>
+          <g class="arch-node control-node"><rect x="325" y="145" width="160" height="65" rx="8"/><text x="347" y="174" class="arch-label">COLLECTION</text><text x="347" y="195" class="arch-title">AMA + filtered DCR</text></g>
+          <g class="arch-node core-node"><rect x="585" y="135" width="160" height="90" rx="8"/><text x="607" y="166" class="arch-label">DATA PLANE</text><text x="607" y="193" class="arch-title">Log Analytics</text><text x="607" y="211" class="arch-detail">30-day retention</text></g>
+          <g class="arch-node core-node"><rect x="825" y="135" width="120" height="90" rx="8"/><text x="847" y="166" class="arch-label">DETECT</text><text x="847" y="193" class="arch-title">Sentinel</text><text x="847" y="211" class="arch-detail">4 KQL rules</text></g>
+          <g class="arch-node response-node"><rect x="1030" y="135" width="70" height="90" rx="8"/><text x="1047" y="166" class="arch-label">ACT</text><text x="1047" y="193" class="arch-title">IR</text><text x="1047" y="211" class="arch-detail">3 guides</text></g>
+          <g class="cost-rail"><rect x="325" y="290" width="620" height="54" rx="8"/><text x="349" y="314" class="arch-label">COST &amp; SAFETY RAIL</text><text x="349" y="334" class="arch-detail">0.25 GB/day quota · EUR 20 alerts · VM auto-shutdown · no public IP · Terraform destroy</text></g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="panel detection-console" id="live-demo">
+      <div class="section-kicker">02 / INTERACTIVE DETECTION EXPLORER</div>
+      <div class="section-intro">
+        <div><h2>Run a local rule fixture</h2><p>Select a detection and compare a known alert condition with its paired benign boundary. The decision logic mirrors the tested Python semantic proxy.</p></div>
+        <span class="simulation-label">Browser simulation · no cloud connection</span>
+      </div>
+      <div class="console-layout">
+        <aside class="rule-selector" aria-label="Detection rules">
+          <button class="rule-button active" data-rule="D1"><span>D1</span><strong>Password spray</strong><small>T1110.003</small></button>
+          <button class="rule-button" data-rule="D2"><span>D2</span><strong>Cloud role change</strong><small>T1098.003</small></button>
+          <button class="rule-button" data-rule="D3"><span>D3</span><strong>PowerShell</strong><small>T1059.001</small></button>
+          <button class="rule-button" data-rule="D4"><span>D4</span><strong>App credential</strong><small>T1098.001</small></button>
+        </aside>
+        <div class="console-main">
+          <div class="console-toolbar">
+            <div class="fixture-switch" role="group" aria-label="Fixture type">
+              <button class="fixture-button active" data-fixture="tp">True positive</button>
+              <button class="fixture-button" data-fixture="fp">False positive</button>
+            </div>
+            <button id="run-detection" class="run-button"><span aria-hidden="true">▶</span> Run local rule</button>
+          </div>
+          <div class="rule-context">
+            <div><span>DATA SOURCE</span><strong id="rule-source">SigninLogs</strong></div>
+            <div><span>DECISION BOUNDARY</span><strong id="rule-threshold">≥6 failures, ≥3 users, one IP</strong></div>
+            <div><span>ATT&amp;CK</span><strong id="rule-attack">T1110.003</strong></div>
+          </div>
+          <div class="event-window">
+            <div class="window-title"><span>synthetic_events.json</span><span id="event-count">6 events</span></div>
+            <div class="table-scroll"><table class="event-table"><thead id="event-head"></thead><tbody id="event-body"></tbody></table></div>
+          </div>
+          <div id="detection-result" class="detection-result idle" aria-live="polite"></div>
+          <details class="query-drawer"><summary>Inspect representative KQL</summary><pre><code id="kql-code"></code></pre></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel investigation-panel" id="investigation">
+      <div class="section-kicker">03 / INCIDENT STORY</div>
+      <div class="section-intro"><div><h2>One chain, four decision points</h2><p>The project keeps ATT&amp;CK as a coverage taxonomy and uses each signal to answer a concrete analyst question.</p></div></div>
+      <ol class="incident-timeline">
+        <li><span class="timeline-marker">01</span><div><small>D1 · INITIAL ACCESS SIGNAL</small><h3>Password spray threshold crossed</h3><p>Six failures across three test users from one reserved IP. Analyst validates the test window, target spread and source context.</p></div><span class="timeline-state">TRIAGE</span></li>
+        <li><span class="timeline-marker">02</span><div><small>D2 · PRIVILEGE CHANGE</small><h3>Cloud role membership added</h3><p>Audit evidence preserves actor, target, role and correlation identifiers before containment is considered.</p></div><span class="timeline-state priority">HIGH</span></li>
+        <li><span class="timeline-marker">03</span><div><small>D3 · ENDPOINT CORRELATION</small><h3>Encoded PowerShell marker observed</h3><p>Event 4104 links controlled endpoint execution to the identity timeline while the paired administrative command stays below the boundary.</p></div><span class="timeline-state">CORRELATE</span></li>
+        <li><span class="timeline-marker">04</span><div><small>D4 · PERSISTENCE SIGNAL</small><h3>Application credential modified</h3><p>The analyst validates ownership and change approval, then follows the credential revocation and recovery runbook.</p></div><span class="timeline-state priority">CONTAIN</span></li>
+      </ol>
+    </section>
+
+    <section class="project-evidence-grid">
+      <article class="panel evidence-card"><span class="section-kicker">INFRASTRUCTURE</span><h2>Reproducible by design</h2><p>Terraform provisions Log Analytics, Sentinel onboarding, optional Entra diagnostics, private Windows telemetry, AMA/DCR and scheduled rules.</p><ul><li>AzureRM 4.81 validated</li><li>System-assigned VM identity</li><li>No public IP or inbound NSG rule</li></ul></article>
+      <article class="panel evidence-card"><span class="section-kicker">AUTOMATION</span><h2>Analyst support, with limits</h2><p>A failure-tolerant Python CLI classifies IP, domain and hash indicators and can query VirusTotal and AbuseIPDB through environment-only API keys.</p><ul><li>JSON and Markdown output</li><li>Provider errors remain visible</li><li>No automatic blocking action</li></ul></article>
+      <article class="panel evidence-card"><span class="section-kicker">RESPONSE</span><h2>Evidence before containment</h2><p>Two synthetic investigations connect signal, decision and recovery requirements. Three runbooks retain human approval for disruptive steps.</p><ul><li>Identity containment</li><li>Endpoint containment</li><li>Credential revocation</li></ul></article>
+      <article class="panel evidence-card"><span class="section-kicker">COST CONTROL</span><h2>Designed to be destroyed</h2><p>The deployment script creates a reviewable private plan before apply. Cleanup evidence records Terraform destroy and checks tagged resources.</p><ul><li>0.25 GB daily ingestion quota</li><li>50/80/100% budget notifications</li><li>Automatic VM shutdown</li></ul></article>
+    </section>
+
+    <section class="panel evidence-status">
+      <div class="section-kicker">04 / EVIDENCE REGISTER</div>
+      <h2>What can be reviewed today</h2>
+      <div class="table-scroll"><table class="status-table"><thead><tr><th>Evidence</th><th>Result</th><th>Verification</th></tr></thead><tbody>
+        <tr><td>Terraform configuration</td><td><span class="pill effective">VERIFIED</span></td><td><code>terraform validate</code></td></tr>
+        <tr><td>Detection fixture suite</td><td><span class="pill effective">8/8 PASS</span></td><td>Four paired TP/FP boundaries</td></tr>
+        <tr><td>IOC enrichment tests</td><td><span class="pill effective">4 PASS</span></td><td>Unit tests + sample artifacts</td></tr>
+        <tr><td>Incident and response package</td><td><span class="pill effective">COMPLETE</span></td><td>2 investigations + 3 runbooks</td></tr>
+        <tr><td>Authenticated Sentinel evidence</td><td><span class="pill expired">PENDING</span></td><td>Controlled Azure sprint</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <footer class="project-footer"><div><strong>Microsoft Cloud Detection &amp; Identity Response Lab</strong><p>Detailed implementation evidence · September 2026</p></div><a class="secondary-action" href="https://github.com/heissonly/microsoft-cloud-detection-identity-lab">Source repository</a></footer>
+  </main>
+  <script src="../detection-lab.js"></script>
+</body>
+</html>
