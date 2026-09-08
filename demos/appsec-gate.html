@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AppSec Quality Gate Demo</title><link rel="stylesheet" href="../styles.css"></head>
+<body><main class="demo-shell"><a class="back-link" href="../index.html">← Back to portfolio</a>
+<header class="demo-header"><p class="eyebrow">02 / INTERACTIVE PROTOTYPE</p><h1>Risk-based build gate</h1><p>This browser demonstration mirrors the repository’s tested Python rule: an unaccepted high or critical finding blocks the build.</p></header>
+<section class="panel"><h2>Pipeline findings</h2><div id="gate-controls">
+<div class="control-row"><strong>Container package CVE</strong><label>Severity<select data-severity><option>medium</option><option selected>high</option><option>critical</option></select></label><label><input type="checkbox" data-accepted> Risk accepted</label></div>
+<div class="control-row"><strong>Kubernetes misconfiguration</strong><label>Severity<select data-severity><option selected>medium</option><option>high</option><option>critical</option></select></label><label><input type="checkbox" data-accepted> Risk accepted</label></div>
+<div class="control-row"><strong>Source-code finding</strong><label>Severity<select data-severity><option>low</option><option selected>high</option><option>critical</option></select></label><label><input type="checkbox" data-accepted checked> Risk accepted</label></div>
+</div><button id="run-gate" type="button">Evaluate build</button><div id="gate-result" class="result" aria-live="polite">Select the current risk state, then evaluate.</div></section>
+<section class="panel notice"><strong>Prototype boundary</strong><p>The Python gate and tests exist. Scanner output adapters and an executed GitLab pipeline are the next milestone.</p></section>
+<script src="../portfolio.js"></script></main></body></html>
+

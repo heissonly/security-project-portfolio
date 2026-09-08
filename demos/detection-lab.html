@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Detection Lab — Design Evidence</title><link rel="stylesheet" href="../styles.css"></head>
+<body><main class="demo-shell"><a class="back-link" href="../index.html">← Back to portfolio</a>
+<header class="demo-header"><p class="eyebrow">01 / DESIGN EVIDENCE</p><h1>Cloud identity compromise test chain</h1><p>A bounded scenario for validating Entra ID and Windows detections in Microsoft Sentinel. Architecture and test criteria are complete; cloud deployment and detection results remain in progress.</p></header>
+<section class="panel notice"><strong>Current boundary</strong><p>This page shows the planned test chain. It does not claim that Azure resources, alerts or incident response actions have already been executed.</p></section>
+<section class="panel"><h2>Scenario sequence</h2>
+<div class="scenario"><span>D1 · T1110.003</span><div><strong>Password spraying</strong><p>Generate controlled failed sign-in activity and validate aggregation, threshold and user context.</p></div></div>
+<div class="scenario"><span>D2 · T1098.003</span><div><strong>Unexpected cloud role assignment</strong><p>Detect a privileged role change and preserve actor, target and audit correlation evidence.</p></div></div>
+<div class="scenario"><span>D3 · T1059.001</span><div><strong>Suspicious PowerShell</strong><p>Correlate endpoint execution telemetry with the identity timeline without adding an unrelated attack story.</p></div></div>
+<div class="scenario"><span>D4 · T1098.001</span><div><strong>Service principal credential change</strong><p>Detect an application credential addition and drive containment and recovery decisions.</p></div></div>
+</section>
+<section class="panel"><h2>Planned evidence package</h2><p>Versioned KQL rules, sanitized event samples, alert screenshots, investigation timeline, containment/recovery runbook and cost report.</p></section>
+</main></body></html>
+
