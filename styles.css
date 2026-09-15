@@ -123,7 +123,7 @@ footer { display: flex; justify-content: space-between; gap: 2rem; padding: 2rem
 .metric { padding: 1rem; border: 1px solid var(--line); }
 .metric span { color: var(--muted); font-size: .8rem; }
 .metric strong { display: block; font: 700 2rem ui-monospace, monospace; }
-.control-row { display: grid; grid-template-columns: 1.1fr .7fr .7fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--line); align-items: center; }
+.control-row { display: grid; grid-template-columns: 1.3fr .6fr .6fr .6fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--line); align-items: center; }
 .control-row:first-child { border-top: 0; }
 .control-row select, .control-row label { width: 100%; }
 select, button {

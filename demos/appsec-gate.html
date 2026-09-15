@@ -1,10 +1,22 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AppSec Quality Gate Demo</title><link rel="stylesheet" href="../styles.css"></head>
 <body><main class="demo-shell"><p class="project-identity">UGUR YERLIKAYA / PROJECT EVIDENCE</p>
-<header class="demo-header"><p class="eyebrow">02 / INTERACTIVE PROTOTYPE</p><h1>Risk-based build gate</h1><p>This browser demonstration mirrors the repository’s tested Python rule: an unaccepted high or critical finding blocks the build.</p></header>
-<section class="panel"><h2>Pipeline findings</h2><div id="gate-controls">
-<div class="control-row"><strong>Container package CVE</strong><label>Severity<select data-severity><option>medium</option><option selected>high</option><option>critical</option></select></label><label><input type="checkbox" data-accepted> Risk accepted</label></div>
-<div class="control-row"><strong>Kubernetes misconfiguration</strong><label>Severity<select data-severity><option selected>medium</option><option>high</option><option>critical</option></select></label><label><input type="checkbox" data-accepted> Risk accepted</label></div>
-<div class="control-row"><strong>Source-code finding</strong><label>Severity<select data-severity><option>low</option><option selected>high</option><option>critical</option></select></label><label><input type="checkbox" data-accepted checked> Risk accepted</label></div>
+<header class="demo-header"><p class="eyebrow">02 / GENERATED OUTPUT + INTERACTIVE PROTOTYPE</p><h1>Risk-based build gate</h1><p>Real Semgrep, pip-audit and Trivy scans against this repository found 18 blocking issues. Every one got fixed. This page shows that real result, then lets you replay the same rule the Python gate and its tests enforce.</p></header>
+
+<section class="panel"><h2>Real scan result: before &rarr; after</h2>
+<div class="metric-grid evidence-metrics">
+<div class="metric"><span>Blockers before</span><strong class="missing">18</strong></div>
+<div class="metric"><span>Blockers after</span><strong class="effective">0</strong></div>
+<div class="metric"><span>Tracked, not blocking</span><strong class="risk-high">44</strong></div>
+<div class="metric"><span>Unit tests</span><strong class="effective">22</strong></div>
+</div>
+<p style="color:var(--muted);font-size:.9rem">The first scan found 6 dependency CVEs (starlette, via pip-audit) and 12 base-image CVEs (perl-base, libsqlite3, gzip, libpcre2, via Trivy). Fixes: bumped fastapi/starlette/uvicorn, added <code style="color:var(--cyan)">apt-get upgrade</code> to the Dockerfile, and added namespace + <code style="color:var(--cyan)">runAsUser</code>/<code style="color:var(--cyan)">runAsGroup</code> to the Kubernetes manifests. The 44 remaining high-severity findings have no vendor-published fix yet &mdash; the gate tracks them instead of blocking a pipeline the team can't act on.</p>
+</section>
+
+<section class="panel"><h2>Try the rule yourself</h2><p>This mirrors the repository's tested Python rule exactly: a finding blocks the build only if it is high/critical, not accepted, <em>and</em> a fix is actually available.</p><div id="gate-controls">
+<div class="control-row"><strong>Dependency CVE (starlette)</strong><label>Severity<select data-severity><option>medium</option><option selected>high</option><option>critical</option></select></label><label><input type="checkbox" data-fixable checked> Fix available</label><label><input type="checkbox" data-accepted> Risk accepted</label></div>
+<div class="control-row"><strong>Base-image CVE (perl-base)</strong><label>Severity<select data-severity><option>medium</option><option>high</option><option selected>critical</option></select></label><label><input type="checkbox" data-fixable checked> Fix available</label><label><input type="checkbox" data-accepted> Risk accepted</label></div>
+<div class="control-row"><strong>Unfixed base-image CVE</strong><label>Severity<select data-severity><option>medium</option><option selected>high</option><option>critical</option></select></label><label><input type="checkbox" data-fixable> Fix available</label><label><input type="checkbox" data-accepted> Risk accepted</label></div>
 </div><button id="run-gate" type="button">Evaluate build</button><div id="gate-result" class="result" aria-live="polite">Select the current risk state, then evaluate.</div></section>
-<section class="panel notice"><strong>Prototype boundary</strong><p>The Python gate and tests exist. Scanner output adapters and an executed GitLab pipeline are the next milestone.</p><a class="repo-link" href="https://github.com/heissonly/cloud-native-appsec-supply-chain">Inspect the source repository →</a></section>
+
+<section class="panel notice"><strong>Prototype boundary</strong><p>The scans above ran locally against this repository's real code, dependencies, container image and Kubernetes manifests &mdash; not synthetic samples. A live GitLab CI execution and a running-cluster DAST/NetworkPolicy test are the next milestone.</p><a class="repo-link" href="https://github.com/heissonly/cloud-native-appsec-supply-chain">Inspect the source repository →</a></section>
 <script src="../portfolio.js"></script></main></body></html>
