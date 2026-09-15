@@ -243,3 +243,11 @@ button:hover, button:focus-visible { background: var(--cyan); color: var(--bg); 
   .evidence-metrics, .rule-context { grid-template-columns: 1fr; }.console-toolbar { align-items: stretch; flex-direction: column; }.fixture-switch, .run-button { width: 100%; }.fixture-button { flex: 1; }
   .incident-timeline li { grid-template-columns: 42px 1fr; }.timeline-state { grid-column: 2; justify-self: start; }.project-bar { align-items: flex-start; flex-direction: column; }
 }
+
+/* Project 03: risk register, remediation and AI-narrative panels */
+.risk-critical { color: #ff8e8e; }.risk-high { color: var(--amber); }.risk-medium { color: var(--blue); }.risk-low { color: var(--green); }
+.pill.overdue { color: #ff8e8e; }.pill.due-soon { color: var(--amber); }.pill.on-track { color: var(--green); }
+.pill.open { color: var(--amber); }.pill.closed { color: var(--green); }
+.narrative-text { margin: 0; font-size: 1rem; line-height: 1.7; }
+.narrative-meta { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .9rem; color: var(--muted); font: .72rem ui-monospace, monospace; }
+.narrative-meta span { padding: .18rem .45rem; border: 1px solid var(--line); }

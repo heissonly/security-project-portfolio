@@ -1,11 +1,42 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ISMS Audit-Readiness Report</title><link rel="stylesheet" href="../styles.css"></head>
 <body><main class="demo-shell"><p class="project-identity">UGUR YERLIKAYA / PROJECT EVIDENCE</p>
-<header class="demo-header"><p class="eyebrow">03 / GENERATED OUTPUT</p><h1>Evidence freshness report</h1><p>Deterministic output from the Python prototype for the sample dataset as of 8 September 2026.</p></header>
-<section class="panel"><div class="metric-grid"><div class="metric"><span>Effective</span><strong class="effective">1</strong></div><div class="metric"><span>Expired</span><strong class="expired">1</strong></div><div class="metric"><span>Missing</span><strong class="missing">1</strong></div></div></section>
-<section class="panel"><h2>Control evidence</h2><div style="overflow-x:auto"><table class="status-table"><thead><tr><th>Control</th><th>Owner</th><th>Status</th><th>Review due</th></tr></thead><tbody>
-<tr><td>Cybersecurity risk register review</td><td>CISO</td><td><span class="pill effective">effective</span></td><td>2026-10-01</td></tr>
-<tr><td>ICT incident handling process</td><td>Security Operations</td><td><span class="pill expired">expired</span></td><td>2026-09-15</td></tr>
-<tr><td>Direct supplier security review</td><td>Vendor Management</td><td><span class="pill missing">missing</span></td><td>2026-11-01</td></tr>
+<header class="demo-header"><p class="eyebrow">03 / GENERATED OUTPUT</p><h1>Audit-readiness report</h1><p>Deterministic output from the Python prototype for the sample dataset as of 8 September 2026 &mdash; control evidence, risk scoring, remediation tracking and an optional AI-generated management summary.</p></header>
+
+<section class="panel"><h2>Control evidence</h2><div class="metric-grid evidence-metrics">
+<div class="metric"><span>Effective</span><strong class="effective">1</strong></div>
+<div class="metric"><span>Expired</span><strong class="expired">1</strong></div>
+<div class="metric"><span>Missing</span><strong class="missing">1</strong></div>
+<div class="metric"><span>Review due soon</span><strong class="risk-high">2</strong></div>
+</div>
+<div style="overflow-x:auto;margin-top:1rem"><table class="status-table"><thead><tr><th>Control</th><th>Owner</th><th>Status</th><th>Review due</th><th>Review alert</th></tr></thead><tbody>
+<tr><td>Cybersecurity risk register review</td><td>CISO</td><td><span class="pill effective">effective</span></td><td>2026-10-01</td><td><span class="pill due-soon">due soon</span></td></tr>
+<tr><td>ICT incident handling process</td><td>Security Operations</td><td><span class="pill expired">expired</span></td><td>2026-09-15</td><td><span class="pill due-soon">due soon</span></td></tr>
+<tr><td>Direct supplier security review</td><td>Vendor Management</td><td><span class="pill missing">missing</span></td><td>2026-11-01</td><td><span class="pill on-track">on track</span></td></tr>
 </tbody></table></div></section>
-<section class="panel notice"><strong>Interpretation boundary</strong><p>This is an illustrative readiness output. It is not an ISO certification or a legal compliance decision.</p><a class="repo-link" href="https://github.com/heissonly/isms-regulatory-evidence-automation">Inspect the source repository →</a></section>
+
+<section class="panel"><h2>Risk register</h2><p>Residual risk factors in only the mitigating controls that currently have effective evidence &mdash; a control that exists on paper but has no valid evidence does not reduce risk.</p>
+<div class="metric-grid evidence-metrics">
+<div class="metric"><span>Low</span><strong class="risk-low">0</strong></div>
+<div class="metric"><span>Medium</span><strong class="risk-medium">1</strong></div>
+<div class="metric"><span>High</span><strong class="risk-high">1</strong></div>
+<div class="metric"><span>Critical</span><strong class="risk-critical">0</strong></div>
+</div>
+<div style="overflow-x:auto;margin-top:1rem"><table class="status-table"><thead><tr><th>Risk</th><th>Owner</th><th>Treatment</th><th>Inherent</th><th>Residual</th><th>Acceptance</th></tr></thead><tbody>
+<tr><td>Compromised privileged account changes production configuration</td><td>CISO</td><td>mitigate</td><td><span class="pill risk-critical">critical</span></td><td><span class="pill risk-high">high</span></td><td>n/a</td></tr>
+<tr><td>Direct supplier fails to patch a disclosed vulnerability</td><td>Vendor Management</td><td>accept</td><td><span class="pill risk-medium">medium</span></td><td><span class="pill risk-medium">medium</span></td><td><span class="pill expired">expired</span></td></tr>
+</tbody></table></div>
+<p style="color:var(--muted);font-size:.85rem;margin-bottom:0">1 accepted risk has an expired acceptance and needs re-approval &mdash; the tool flags this automatically instead of letting a stale sign-off stand.</p></section>
+
+<section class="panel"><h2>Exceptions &amp; remediation</h2>
+<div style="overflow-x:auto"><table class="status-table"><thead><tr><th>Exception</th><th>Control</th><th>Owner</th><th>Status</th><th>Due date</th></tr></thead><tbody>
+<tr><td>Direct supplier security review evidence is missing</td><td>CTRL-SUP-01</td><td>Vendor Management</td><td><span class="pill overdue">open, overdue</span></td><td>2026-09-01</td></tr>
+<tr><td>Tabletop exercise evidence filed one week late</td><td>CTRL-IR-01</td><td>Security Operations</td><td><span class="pill closed">closed</span></td><td>2026-06-15</td></tr>
+</tbody></table></div></section>
+
+<section class="panel"><h2>Management summary <span style="color:var(--muted);font-weight:400">&mdash; AI-assisted, deterministic underneath</span></h2>
+<p class="narrative-text">As of 2026-09-08, 1 control(s) have effective evidence, 1 have expired evidence, and 1 have no evidence on file. 0 control(s) are overdue for review and 2 are due soon. The risk register holds 0 critical, 1 high, 1 medium and 0 low residual-risk item(s). 1 accepted risk(s) have an expired acceptance and need re-approval. 1 remediation exception(s) are open, of which 1 are past their due date. This summary narrates the figures above; it adds no judgment beyond the deterministic control, risk and exception calculations.</p>
+<div class="narrative-meta"><span>provider: template</span><span>a local Ollama model can replace this paragraph</span><span>falls back automatically if the model is unavailable</span></div>
+</section>
+
+<section class="panel notice"><strong>Interpretation boundary</strong><p>This is an illustrative readiness output. Every number above comes from deterministic code, not the language model &mdash; the optional AI layer only turns already-computed figures into prose. It is not an ISO certification or a legal compliance decision.</p><span class="repo-link">Source repository available on request</span></section>
 </main></body></html>
